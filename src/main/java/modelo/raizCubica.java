@@ -4,10 +4,14 @@
  */
 package modelo;
 
-/**
- *
- * @author Juan Carlos
- */
-public class raizCubica {
-    
+public class raizCubica extends operacion {
+    @Override
+    public double calcular(double a, double b) {
+        return Math.cbrt(a);
+    }
+
+    @Override
+    public boolean esUnaria() {
+        return true;
+    }
 }
