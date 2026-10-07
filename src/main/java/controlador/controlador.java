@@ -8,57 +8,40 @@ package controlador;
  *
  * @author Juan Carlos
  */
-import javax.swing.JOptionPane;
+
 import modelo.*;
 
 public class controlador {
 
-    //  
-    public static operacion crearOperacion(String tipo) {
-        switch (tipo.toLowerCase()) {
-            case "sumar":
-            case "+":
-                return new suma();
-            case "restar":
-            case "-":
-                return new resta();
-            case "multiplicar":
-            case "*":
-                return new multiplicacion();
-            case "dividir":
-            case "/":
-                return new division();
-            case "raiz2":
-            case "√":
-                return new raizCuadrada();
-            case "raiz3":
-            case "∛":
-                return new raizCubica();
-            case "ln":
-                return new logaritmoNatural();
-            default:
-                return null;
+   public static operacion crearOperacion(String tipo) {
+        switch (tipo) {
+            case "+": return new suma();
+            case "-": return new resta();
+            case "*": return new multiplicacion();
+            case "/": return new division();
+            case "raiz2": return new raizCuadrada();
+            case "raiz3": return new raizCubica();
+            case "ln": return new logaritmoNatural();
+            default: return null;
         }
     }
 
-    // Ejecuta el cálculo atrapando errores de validación
-    public static void procesarCalculo(String tipoOperacion, double num1, double num2) {
+    // Ahora devuelve un String en lugar de abrir la ventanita
+    public static String procesarCalculo(String tipoOperacion, double num1, double num2) {
         try {
             operacion op = crearOperacion(tipoOperacion);
-
+            
             if (op == null) {
-                JOptionPane.showMessageDialog(null, "Operación no válida.");
-                return;
+                return "Operación no válida";
             }
 
             double resultado = op.calcular(num1, num2);
-            JOptionPane.showMessageDialog(null, "El resultado es: " + resultado);
+            return String.valueOf(resultado); // Devuelve el número como texto
 
         } catch (ArithmeticException ex) {
-            // Muestra mensaje claro si hay división entre 0, raíz de negativo, etc.
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            return "Error: " + ex.getMessage();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error inesperado al calcular.");
+            return "Error al calcular";
         }
     }
 }
