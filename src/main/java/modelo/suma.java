@@ -8,6 +8,9 @@ package modelo;
  *
  * @author Juan Carlos
  */
-public class suma {
-    
+public class suma extends operacion {
+    @Override
+    public double calcular(double a, double b) {
+        return a + b;
+    }
 }
