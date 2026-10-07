@@ -4,6 +4,10 @@
  */
 package modelo;
 
+/**
+ *
+ * @author Juan Carlos
+ */
 public class logaritmoNatural extends operacion {
     @Override
     public double calcular(double a, double b) {
