@@ -4,10 +4,17 @@
  */
 package modelo;
 
-/**
- *
- * @author Juan Carlos
- */
-public class raizCuadrada {
-    
+public class raizCuadrada extends operacion {
+    @Override
+    public double calcular(double a, double b) {
+        if (a < 0) {
+            throw new ArithmeticException("No existe raíz cuadrada de números negativos.");
+        }
+        return Math.sqrt(a);
+    }
+
+    @Override
+    public boolean esUnaria() {
+        return true; // Solo usa un número (a)
+    }
 }
